@@ -34,20 +34,16 @@ namespace _2024May27_SummerStart
                 TotalCaps = GetInt(txtUniverse),
                 Iterations = GetInt(txtIterations),
 
-                /// make this true, if you want to see the chosen caps
-                /// but be mindful of memory used
-                KeepChosenCaps = false
+                KeepChosenCaps = false // be mindful of memory used, if making this true
             };
-            ss.Start();
 
-            lstBoxChoices.Items.Clear();
-            lstBoxWinnerCount.Items.Clear();
+            ss.Start();
+            Reset();
+            ShowResult(ss.WinnerCounts);
 
             /// make KeepChosenCaps true above, if you want to see the chosen caps
             /// but be mindful of memory used
             //ShowResultDetail(ss.ChosenCapsCollection);
-
-            ShowResult(ss.WinnerCounts);
         }
 
         private void ShowResult(Dictionary<int, int> winnerCounts)
@@ -92,6 +88,12 @@ namespace _2024May27_SummerStart
 
             txtBox.Text = $"{parsedInt:n0}";
             return parsedInt;
+        }
+
+        private void Reset()
+        {
+            lstBoxChoices.Items.Clear();
+            lstBoxWinnerCount.Items.Clear();
         }
     }
 }

@@ -27,9 +27,9 @@ namespace SummerStart
         {
             var rand = random.Next(0, Caps.Count);
             var selectedCap = Caps.Single(c => c.ID == rand);
-            if (selectedCap.Chosen) return GetNextCap();
+            if (selectedCap.IsChosen) return GetNextCap();
 
-            selectedCap.Chosen = true;
+            selectedCap.IsChosen = true;
             return selectedCap;
         }
     }

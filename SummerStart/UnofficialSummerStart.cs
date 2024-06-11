@@ -13,7 +13,7 @@ namespace SummerStart
         private int turns;
 
         public bool KeepChosenCaps { get; set; }
-        public ICollection<ICollection<Cap>> ChosenCapsCollection { get; private set; } = new List<ICollection<Cap>>();
+        public ICollection<ICollection<Cap>> ChosenCapsCollection { get; private set; }
         public int Turns { get; set; }
         public int Iterations { get; set; }
         public int TotalCaps { get; set; }
@@ -22,7 +22,7 @@ namespace SummerStart
 
         public void Start()
         {
-            ResetWinnerCounts();
+            Reset();
 
             ICapChooser capChooser = new CapChooser() { Turns = Turns };
             for (int i = 0; i < Iterations; i++)
@@ -37,8 +37,10 @@ namespace SummerStart
             }
         }
 
-        private void ResetWinnerCounts()
+        private void Reset()
         {
+            ChosenCapsCollection = new List<ICollection<Cap>>();
+
             WinnerCounts = new Dictionary<int, int>();
             for (int i = 0; i <= Turns; i++)
             {
