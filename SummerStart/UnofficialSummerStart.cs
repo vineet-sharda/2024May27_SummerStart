@@ -11,47 +11,38 @@ namespace SummerStart
     public class UnofficialSummerStart : ISummerStart
     {
         private int turns;
-        private Dictionary<int, int> winnerCounts = new Dictionary<int, int>();
 
+        public bool KeepChosenCaps { get; set; }
         public ICollection<ICollection<Cap>> ChosenCapsCollection { get; private set; } = new List<ICollection<Cap>>();
-        public int Turns
-        {
-            get { return turns; }
-            set
-            {
-                turns = value;
-                for (int i = 0; i <= turns; i++)
-                {
-                    winnerCounts.Add(i, 0);
-                }
-            }
-        }
+        public int Turns { get; set; }
         public int Iterations { get; set; }
         public int TotalCaps { get; set; }
         public int WinnerEvery { get; set; }
-        public Dictionary<int, int> WinnerCounts
-        {
-            get
-            {
-                for (int i = 0; i < winnerCounts.Count; i++)
-                {
-                    winnerCounts[i] = 0;
-                }
-                foreach (var capCollection in ChosenCapsCollection)
-                {
-                    winnerCounts[capCollection.Count(c => c.IsWinner)]++;
-                }
-                return winnerCounts;
-            }
-        }
+        public Dictionary<int, int> WinnerCounts { get; private set; }
 
         public void Start()
         {
+            ResetWinnerCounts();
+
             ICapChooser capChooser = new CapChooser() { Turns = Turns };
             for (int i = 0; i < Iterations; i++)
             {
                 capChooser.Caps = new CapsCreator().Create(TotalCaps, WinnerEvery);
-                ChosenCapsCollection.Add(capChooser.MakeChoices());
+                var chosenCaps = capChooser.MakeChoices();
+                if (KeepChosenCaps)
+                {
+                    ChosenCapsCollection.Add(capChooser.MakeChoices());
+                }
+                WinnerCounts[chosenCaps.Count(c => c.IsWinner)]++;
+            }
+        }
+
+        private void ResetWinnerCounts()
+        {
+            WinnerCounts = new Dictionary<int, int>();
+            for (int i = 0; i <= Turns; i++)
+            {
+                WinnerCounts.Add(i, 0);
             }
         }
 

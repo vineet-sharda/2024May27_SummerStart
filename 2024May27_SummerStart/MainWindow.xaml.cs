@@ -32,18 +32,25 @@ namespace _2024May27_SummerStart
                 Turns = GetInt(txtTurns),
 
                 TotalCaps = GetInt(txtUniverse),
-                Iterations = GetInt(txtIterations)
+                Iterations = GetInt(txtIterations),
+
+                /// make this true, if you want to see the chosen caps
+                /// but be mindful of memory used
+                KeepChosenCaps = false
             };
             ss.Start();
 
             lstBoxChoices.Items.Clear();
             lstBoxWinnerCount.Items.Clear();
 
+            /// make KeepChosenCaps true above, if you want to see the chosen caps
+            /// but be mindful of memory used
             //ShowResultDetail(ss.ChosenCapsCollection);
+
             ShowResult(ss.WinnerCounts);
         }
 
-        public void ShowResult(Dictionary<int, int> winnerCounts)
+        private void ShowResult(Dictionary<int, int> winnerCounts)
         {
             int total = 0;
             for (int i = 0; i < winnerCounts.Count; i++)
@@ -59,7 +66,7 @@ namespace _2024May27_SummerStart
             lstBoxWinnerCount.Items.Add($"{total:n0}");
         }
 
-        public void ShowResultDetail(ICollection<ICollection<Cap>> collectionOfChosenCollections)
+        private void ShowResultDetail(ICollection<ICollection<Cap>> collectionOfChosenCollections)
         {
             foreach (var capCollection in collectionOfChosenCollections)
             {
@@ -68,18 +75,14 @@ namespace _2024May27_SummerStart
                 {
                     capIDs = $"{capIDs},{cap.ID}";
                 }
-                lstBoxChoices.Items.Add(capIDs.Substring(1));
-                lstBoxWinnerCount.Items.Add(capCollection.Count(c => c.IsWinner));
+                lstBoxWinnerCount.Items.Add(capIDs.Substring(1));
+                lstBoxChoices.Items.Add(capCollection.Count(c => c.IsWinner));
             }
         }
 
         private int GetInt(TextBox txtBox)
         {
             decimal parsedNumber = 0;
-            //decimal.TryParse(txtBox.Text,
-            //    NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint,
-            //    CultureInfo.InvariantCulture,
-            //    out parsedNumber);
             decimal.TryParse(txtBox.Text,
                 NumberStyles.Number,
                 CultureInfo.InvariantCulture.NumberFormat,
