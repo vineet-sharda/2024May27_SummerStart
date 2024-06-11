@@ -1,0 +1,32 @@
+﻿<Window x:Class="_2024May27_SummerStart.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_2024May27_SummerStart"
+        mc:Ignorable="d"
+        Title="Unofficial Summer Start 2024-May-27" Height="273" Width="627">
+    <Grid HorizontalAlignment="Left" Width="612" Margin="22,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="526*"/>
+            <ColumnDefinition Width="45*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" Margin="153,8,0,0" VerticalAlignment="Top" Click="btnStart_Click" Width="374" FontSize="20" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <ListBox x:Name="lstBoxChoices" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="153,45,0,21" HorizontalAlignment="Left" Width="165" Grid.Column="1"/>
+        <ListBox x:Name="lstBoxWinnerCount" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,44,45,22" HorizontalAlignment="Right" Width="157" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <Label Content="Winning Soda caps" HorizontalAlignment="Left" Margin="0,2,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Grid.ColumnSpan="2"/>
+        <Grid x:Name="gridInput" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="106" Margin="10,48,0,0" VerticalAlignment="Top" Width="164">
+            <TextBox x:Name="txtWinnerEvery" HorizontalAlignment="Left" Margin="97,4,0,0" TextWrapping="Wrap" Text="6" VerticalAlignment="Top" Width="67" />
+            <Label Content="Winner every" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtTurns" HorizontalAlignment="Left" Margin="97,31,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="67"/>
+            <Label Content="Turns" HorizontalAlignment="Left" Margin="0,27,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtUniverse" HorizontalAlignment="Left" Margin="97,59,0,0" TextWrapping="Wrap" Text="1200" VerticalAlignment="Top" Width="67"/>
+            <Label Content="Soda universe" HorizontalAlignment="Left" Margin="0,54,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtIterations" HorizontalAlignment="Left" Margin="97,87,0,0" TextWrapping="Wrap" Text="100000" VerticalAlignment="Top" Width="67"/>
+            <Label Content="Iterations" HorizontalAlignment="Left" Margin="0,80,0,0" VerticalAlignment="Top"/>
+
+        </Grid>
+
+    </Grid>
+</Window>
