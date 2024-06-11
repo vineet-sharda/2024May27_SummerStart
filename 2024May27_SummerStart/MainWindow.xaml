@@ -13,8 +13,8 @@
             <ColumnDefinition Width="41*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top" Click="btnStart_Click" Width="228" FontSize="20" Grid.ColumnSpan="2" Height="31"/>
-        <ListBox x:Name="lstBoxChoices" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="244,61,0,22" HorizontalAlignment="Left" Width="64" Grid.Column="1"/>
-        <ListBox x:Name="lstBoxWinnerCount" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,61,33,22" HorizontalAlignment="Right" Width="132" Grid.Column="1"/>
+        <ListBox x:Name="lstBoxChoices" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="244,61,0,10" HorizontalAlignment="Left" Width="72" Grid.Column="1"/>
+        <ListBox x:Name="lstBoxWinnerCount" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,61,27,10" HorizontalAlignment="Right" Width="132" Grid.Column="1"/>
         <Label Content="Winning Soda caps" HorizontalAlignment="Left" Margin="248,7,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Grid.Column="1" Height="37" Width="189"/>
         <TextBox x:Name="txtWinnerEvery" HorizontalAlignment="Left" TextWrapping="Wrap" Text="6" VerticalAlignment="Top" Width="83" Grid.Column="1" Margin="115,52,0,0" Height="18" />
         <Label Content="Winner every" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="7,48,0,0" Height="26" Width="80"/>
