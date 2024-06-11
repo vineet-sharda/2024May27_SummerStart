@@ -49,11 +49,11 @@ namespace _2024May27_SummerStart
         private void ShowResult(Dictionary<int, int> winnerCounts)
         {
             int total = 0;
-            for (int i = 0; i < winnerCounts.Count; i++)
+            foreach (var winnerCount in winnerCounts)
             {
-                lstBoxChoices.Items.Add(i);
-                lstBoxWinnerCount.Items.Add($"{winnerCounts[i]:n0}");
-                total += winnerCounts[i];
+                lstBoxChoices.Items.Add(winnerCount.Key);
+                lstBoxWinnerCount.Items.Add($"{winnerCount.Value:n0}");
+                total += winnerCount.Value;
             }
 
             lstBoxChoices.Items.Add("-- -- --");
