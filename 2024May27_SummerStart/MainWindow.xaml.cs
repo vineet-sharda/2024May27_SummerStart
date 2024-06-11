@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -27,11 +28,11 @@ namespace _2024May27_SummerStart
         {
             ISummerStart ss = new UnofficialSummerStart()
             {
-                WinnerEvery = int.Parse(txtWinnerEvery.Text),
-                Turns = int.Parse(txtTurns.Text),
+                WinnerEvery = GetInt(txtWinnerEvery),
+                Turns = GetInt(txtTurns),
 
-                TotalCaps = int.Parse(txtUniverse.Text),
-                Iterations = int.Parse(txtIterations.Text)
+                TotalCaps = GetInt(txtUniverse),
+                Iterations = GetInt(txtIterations)
             };
             ss.Start();
 
@@ -48,14 +49,14 @@ namespace _2024May27_SummerStart
             for (int i = 0; i < winnerCounts.Count; i++)
             {
                 lstBoxChoices.Items.Add(i);
-                lstBoxWinnerCount.Items.Add(winnerCounts[i]);
+                lstBoxWinnerCount.Items.Add($"{winnerCounts[i]:n0}");
                 total += winnerCounts[i];
             }
 
             lstBoxChoices.Items.Add("-- -- --");
             lstBoxWinnerCount.Items.Add("-- -- --");
             lstBoxChoices.Items.Add("Total");
-            lstBoxWinnerCount.Items.Add(total);
+            lstBoxWinnerCount.Items.Add($"{total:n0}");
         }
 
         public void ShowResultDetail(ICollection<ICollection<Cap>> collectionOfChosenCollections)
@@ -72,9 +73,22 @@ namespace _2024May27_SummerStart
             }
         }
 
-        private void txtWinnerEvery_TextChanged(object sender, TextChangedEventArgs e)
+        private int GetInt(TextBox txtBox)
         {
+            decimal parsedNumber = 0;
+            //decimal.TryParse(txtBox.Text,
+            //    NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint,
+            //    CultureInfo.InvariantCulture,
+            //    out parsedNumber);
+            decimal.TryParse(txtBox.Text,
+                NumberStyles.Number,
+                CultureInfo.InvariantCulture.NumberFormat,
+                out parsedNumber);
+            if (parsedNumber < 0) parsedNumber = 0;
+            int parsedInt = (int)Math.Floor(parsedNumber);
 
+            txtBox.Text = $"{parsedInt:n0}";
+            return parsedInt;
         }
     }
 }
